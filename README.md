@@ -7,7 +7,7 @@ Aplikacja Java służąca do zarządzania danymi pracowników przechowywanymi w 
 ## Wymagania
 
 - Java JDK 11 lub wyższa
-- Maven (do zarządzania zależnościami i budowania projektu)
+- Maven
 
 ## Konfiguracja
 
