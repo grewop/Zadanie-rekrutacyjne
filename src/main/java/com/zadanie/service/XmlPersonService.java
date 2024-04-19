@@ -1,7 +1,6 @@
-package com.zadanie.utils;
+package com.zadanie.service;
 
 import com.zadanie.model.Person;
-import com.zadanie.service.PersonService;
 
 import javax.xml.bind.JAXB;
 import javax.xml.bind.JAXBContext;
@@ -40,7 +39,7 @@ public class XmlPersonService implements PersonService {
     @Override
     public void create(Person person) {
         try {
-            File file = new File(internalPath + person.getPersonId() + ".xml");
+            File file = new File(internalPath, person.getPersonId() + ".xml");
             JAXBContext context = JAXBContext.newInstance(Person.class);
             Marshaller marshaller = context.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
@@ -52,11 +51,11 @@ public class XmlPersonService implements PersonService {
 
     @Override
     public boolean remove(String personId) {
-        File file = new File(internalPath + personId + ".xml");
+        File file = new File(internalPath, personId + ".xml");
         if (file.exists()) {
             return file.delete();
         }
-        file = new File(externalPath + personId + ".xml");
+        file = new File(externalPath, personId + ".xml");
         return file.exists() && file.delete();
     }
 

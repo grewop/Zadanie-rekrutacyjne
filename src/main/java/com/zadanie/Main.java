@@ -2,7 +2,7 @@ package com.zadanie;
 
 import com.zadanie.model.Person;
 import com.zadanie.service.PersonService;
-import com.zadanie.utils.XmlPersonService;
+import com.zadanie.service.XmlPersonService;
 
 public class Main {
     public static void main(String[] args) {
@@ -16,10 +16,17 @@ public class Main {
         // Dodanie nowego pracownika
         personService.create(newPerson);
 
-        // Wyszukiwanie pracownika
-        Person foundPerson = personService.find("4", null, null, null, null, null);
+        // Wyszukiwanie pracownika istniejącego
+        Person foundPerson = personService.find("1", null, null, null, null, null);
         if (foundPerson != null) {
             System.out.println("Znaleziono pracownika: " + foundPerson.getFirstName() + " " + foundPerson.getLastName());
+        } else {
+            System.out.println("Nie znaleziono pracownika.");
+        }
+        // Wyszukiwanie pracownika dodanego
+        Person foundPerson2 = personService.find("4", null, null, null, null, null);
+        if (foundPerson2 != null) {
+            System.out.println("Znaleziono pracownika: " + foundPerson2.getFirstName() + " " + foundPerson2.getLastName());
         } else {
             System.out.println("Nie znaleziono pracownika.");
         }

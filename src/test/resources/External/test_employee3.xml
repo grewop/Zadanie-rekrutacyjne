@@ -1,8 +1,0 @@
-<Person>
-    <personId>3</personId>
-    <firstName>Tomasz</firstName>
-    <lastName>Zieli&#324;ski</lastName>
-    <mobile>700300400</mobile>
-    <email>tomasz.zielinski@example.com</email>
-    <pesel>92040554321</pesel>
-</Person>

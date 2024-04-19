@@ -1,6 +1,6 @@
 <Person>
     <personId>1</personId>
-    <firstName>Jan</firstName>
+    <firstName>Paweł</firstName>
     <lastName>Kowalski</lastName>
     <mobile>500100200</mobile>
     <email>jan.kowalski@example.com</email>

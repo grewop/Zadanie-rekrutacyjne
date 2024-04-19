@@ -1,7 +1,6 @@
 package com.zadanie.service;
 
 import com.zadanie.model.Person;
-import com.zadanie.utils.XmlPersonService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -22,7 +21,7 @@ class XmlPersonServiceTest {
     void testCreate() {
         Person person = new Person("1", "Jan", "Kowalski", "500100200", "jan.kowalski@example.com", "90050512345");
         service.create(person);
-        File file = new File(basePath + "Internal1.xml");
+        File file = new File(basePath + "/Internal", "1.xml");
         assertTrue(file.exists());
         // Cleanup for the next test
         assertTrue(file.delete());
@@ -39,7 +38,7 @@ class XmlPersonServiceTest {
         assertEquals("Anna", foundPerson.getFirstName());
 
         // Cleanup
-        assertTrue(new File(basePath + "Internal2.xml").delete());
+        assertTrue(new File(basePath+ "/Internal", "2.xml").delete());
     }
 
     @Test
@@ -49,7 +48,7 @@ class XmlPersonServiceTest {
         service.create(person);
 
         assertTrue(service.remove("3"));
-        assertFalse(new File(basePath + "Internal3.xml").exists());
+        assertFalse(new File(basePath+ "/Internal", "3.xml").exists());
     }
 
     @Test
@@ -66,7 +65,7 @@ class XmlPersonServiceTest {
         assertEquals("Kasia", modifiedPerson.getFirstName());
 
         // Cleanup
-        assertTrue(new File(basePath + "Internal4.xml").delete());
+        assertTrue(new File(basePath+ "/Internal", "4.xml").delete());
     }
 
 }
