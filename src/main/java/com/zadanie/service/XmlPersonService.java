@@ -1,6 +1,7 @@
 package com.zadanie.service;
 
 import com.zadanie.model.Person;
+import com.zadanie.model.PersonType;
 
 import javax.xml.bind.JAXB;
 import javax.xml.bind.JAXBContext;

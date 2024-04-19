@@ -1,4 +1,4 @@
-package com.zadanie.service;
+package com.zadanie.model;
 
 public enum PersonType {
     INTERNAL, EXTERNAL

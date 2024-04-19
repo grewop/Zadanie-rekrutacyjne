@@ -1,7 +1,7 @@
 package com.zadanie;
 
 import com.zadanie.model.Person;
-import com.zadanie.service.PersonType;
+import com.zadanie.model.PersonType;
 import com.zadanie.service.XmlPersonService;
 
 public class Main {

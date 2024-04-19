@@ -1,6 +1,7 @@
 package com.zadanie.service;
 
 import com.zadanie.model.Person;
+import com.zadanie.model.PersonType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

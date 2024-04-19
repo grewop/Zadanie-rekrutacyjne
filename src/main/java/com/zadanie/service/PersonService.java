@@ -1,6 +1,7 @@
 package com.zadanie.service;
 
 import com.zadanie.model.Person;
+import com.zadanie.model.PersonType;
 
 public interface PersonService {
     Person find(String personId, String firstName, String lastName, String mobile, String email, String pesel);
