@@ -37,9 +37,10 @@ public class XmlPersonService implements PersonService {
     }
 
     @Override
-    public void create(Person person) {
+    public void create(Person person, PersonType type) {
         try {
-            File file = new File(internalPath, person.getPersonId() + ".xml");
+            String path = (type == PersonType.INTERNAL) ? internalPath : externalPath;
+            File file = new File(path, person.getPersonId() + ".xml");
             JAXBContext context = JAXBContext.newInstance(Person.class);
             Marshaller marshaller = context.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
@@ -50,8 +51,9 @@ public class XmlPersonService implements PersonService {
     }
 
     @Override
-    public boolean remove(String personId) {
-        File file = new File(internalPath, personId + ".xml");
+    public boolean remove(String personId, PersonType type) {
+        String path = (type == PersonType.INTERNAL) ? internalPath : externalPath;
+        File file = new File(path, personId + ".xml");
         if (file.exists()) {
             return file.delete();
         }
@@ -60,9 +62,9 @@ public class XmlPersonService implements PersonService {
     }
 
     @Override
-    public void modify(Person person) {
-        remove(person.getPersonId());  // Usuń stary plik
-        create(person);  // Utwórz zaktualizowany plik
+    public void modify(Person person, PersonType type) {
+        remove(person.getPersonId(), type);
+        create(person, type);
     }
 
     public List<Person> loadPersonsFromDirectory(String directoryPath) {

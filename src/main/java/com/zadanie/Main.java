@@ -1,42 +1,43 @@
 package com.zadanie;
 
 import com.zadanie.model.Person;
-import com.zadanie.service.PersonService;
+import com.zadanie.service.PersonType;
 import com.zadanie.service.XmlPersonService;
 
 public class Main {
     public static void main(String[] args) {
         // Ustalamy ścieżkę do katalogu z danymi XML
         String directoryPath = "src/main/resources/";
-        PersonService personService = new XmlPersonService(directoryPath);
+        XmlPersonService personService = new XmlPersonService(directoryPath);
 
-        // Przykładowe dane do dodania nowego pracownika
-        Person newPerson = new Person("4", "Jan", "Kowalski", "500100200", "jan.kowalski@example.com", "90050512345");
+        // Przykładowe dane do dodania nowego pracownika wewnętrznego
+        Person newInternalPerson = new Person("4", "Jan", "Kowalski", "500100200", "jan.kowalski@example.com", "90050512345");
 
-        // Dodanie nowego pracownika
-        personService.create(newPerson);
+        // Dodanie nowego pracownika wewnętrznego
+        personService.create(newInternalPerson, PersonType.INTERNAL);
 
-        // Wyszukiwanie pracownika istniejącego
-        Person foundPerson = personService.find("1", null, null, null, null, null);
-        if (foundPerson != null) {
-            System.out.println("Znaleziono pracownika: " + foundPerson.getFirstName() + " " + foundPerson.getLastName());
+        // Wyszukiwanie istniejącego pracownika zewnętrznego
+        Person foundInternalPerson = personService.find("2", null, null, null, null, null);
+        if (foundInternalPerson != null) {
+            System.out.println("Znaleziono pracownika zewnętrznego: " + foundInternalPerson.getFirstName() + " " + foundInternalPerson.getLastName());
         } else {
-            System.out.println("Nie znaleziono pracownika.");
-        }
-        // Wyszukiwanie pracownika dodanego
-        Person foundPerson2 = personService.find("4", null, null, null, null, null);
-        if (foundPerson2 != null) {
-            System.out.println("Znaleziono pracownika: " + foundPerson2.getFirstName() + " " + foundPerson2.getLastName());
-        } else {
-            System.out.println("Nie znaleziono pracownika.");
+            System.out.println("Nie znaleziono pracownika zewnętrznego.");
         }
 
-        // Usunięcie pracownika
-        boolean isRemoved = personService.remove("4");
-        if (isRemoved) {
-            System.out.println("Pracownik został usunięty.");
+        // Wyszukiwanie dodanego pracownika wewnętrznego
+        Person foundAddedInternalPerson = personService.find("4", null, null, null, null, null);
+        if (foundAddedInternalPerson != null) {
+            System.out.println("Znaleziono dodanego pracownika wewnętrznego: " + foundAddedInternalPerson.getFirstName() + " " + foundAddedInternalPerson.getLastName());
         } else {
-            System.out.println("Nie udało się usunąć pracownika.");
+            System.out.println("Nie znaleziono dodanego pracownika wewnętrznego.");
+        }
+
+        // Usunięcie pracownika wewnętrznego
+        boolean isInternalRemoved = personService.remove("4", PersonType.INTERNAL);
+        if (isInternalRemoved) {
+            System.out.println("Pracownik wewnętrzny został usunięty.");
+        } else {
+            System.out.println("Nie udało się usunąć pracownika wewnętrznego.");
         }
     }
 }
